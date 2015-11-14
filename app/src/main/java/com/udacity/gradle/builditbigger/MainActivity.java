@@ -1,8 +1,10 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,7 +13,7 @@ import com.example.JokeProvider;
 import com.example.kacyn.displayjokelib.DisplayJokeActivity;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +46,10 @@ public class MainActivity extends ActionBarActivity {
 
     public void tellJoke(View view){
         Intent jokeIntent = new Intent(this, DisplayJokeActivity.class);
+        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
         jokeIntent.putExtra(getString(R.string.joke_key), new JokeProvider().getJoke());
         startActivity(jokeIntent);
 
         //Toast.makeText(this, new JokeProvider().getJoke(), Toast.LENGTH_SHORT).show();
     }
-
-
 }
