@@ -12,6 +12,16 @@ android {
         versionName "1.0"
         multiDexEnabled true
     }
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.builditbigger.free"
+        }
+        paid {
+            applicationId "com.udacity.gradle.builditbigger.paid"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -22,9 +32,14 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    // Added for AdMob
-    compile project(':displayjokelib')
     compile 'com.android.support:appcompat-v7:23.1.0'
-    compile 'com.google.android.gms:play-services-ads:8.1.0'
+
+    // Added for AdMob
+    freeCompile 'com.google.android.gms:play-services-ads:8.1.0'
+
+    //Android library for displaying jokes
+    compile project(':displayjokelib')
+
+    //GCE backend
     compile project(path: ':backend', configuration: 'android-endpoints')
 }
