@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-public class MainActivity extends AppCompatActivity {//} implements OnTaskCompleted {
+public class MainActivity extends AppCompatActivity {
     private Button mButton;
     private ProgressBar mProgressBar;
 
@@ -61,10 +61,5 @@ public class MainActivity extends AppCompatActivity {//} implements OnTaskComple
         mProgressBar.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask(this).execute();
     }
-
-//    @Override
-//    public void onTaskCompleted() {
-//        mProgressBar.setVisibility(View.GONE);
-//    }
 }
 

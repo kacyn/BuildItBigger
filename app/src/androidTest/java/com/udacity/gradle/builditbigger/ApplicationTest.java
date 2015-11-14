@@ -1,24 +1,19 @@
 package com.udacity.gradle.builditbigger;
 
-import android.app.Application;
-import android.test.ApplicationTestCase;
-import android.test.mock.MockContext;
+import android.test.AndroidTestCase;
 
 import java.util.concurrent.TimeUnit;
 
 /**
  * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
  */
-public class ApplicationTest extends ApplicationTestCase<Application> {
-    public ApplicationTest() {
-        super(Application.class);
-    }
+public class ApplicationTest extends AndroidTestCase {
 
     public void testVerifyJokeReceived() {
         String joke = "";
 
         try {
-            EndpointsAsyncTask jokeTask = new EndpointsAsyncTask(new MockContext());
+            EndpointsAsyncTask jokeTask = new EndpointsAsyncTask(getContext());
             jokeTask.execute();
             joke = jokeTask.get(30, TimeUnit.SECONDS);
         } catch (Exception e){
