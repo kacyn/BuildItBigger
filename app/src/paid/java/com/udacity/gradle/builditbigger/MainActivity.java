@@ -6,14 +6,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     private Button mButton;
+    private ProgressBar mProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         mButton = (Button) findViewById(R.id.button);
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +52,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(){
+        mProgressBar.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask(this).execute();
+    }
+
+    @Override
+    public void onTaskCompleted() {
+        mProgressBar.setVisibility(View.GONE);
     }
 }
 

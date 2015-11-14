@@ -18,9 +18,11 @@ import java.io.IOException;
 class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService = null;
     private Context mContext;
+    private OnTaskCompleted mListener;
 
-    EndpointsAsyncTask(Context context) {
-        mContext = context;
+    EndpointsAsyncTask(OnTaskCompleted listener) {
+        mContext = (Context) listener;
+        mListener = listener;
     }
 
     @Override
@@ -58,6 +60,8 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        mListener.onTaskCompleted();
+
         Intent jokeIntent = new Intent(mContext, DisplayJokeActivity.class);
         Log.v("MainActivity", "mjoke: " + result);
         jokeIntent.putExtra(mContext.getString(R.string.joke_key), result);
