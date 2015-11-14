@@ -18,10 +18,15 @@ public class DisplayJokeActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_main, container, false);
+        View root = inflater.inflate(R.layout.display_fragment_main, container, false);
+
+        Bundle args = getArguments();
 
         TextView jokeView = (TextView) root.findViewById(R.id.joke_display);
-        jokeView.setText(getArguments().getString(getString(R.string.joke_key)));
+
+        if(args != null) {
+            jokeView.setText(getArguments().getString(getString(R.string.joke_key)));
+        }
 
         return root;
     }

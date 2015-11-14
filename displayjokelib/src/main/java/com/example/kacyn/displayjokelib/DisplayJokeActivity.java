@@ -10,10 +10,11 @@ public class DisplayJokeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.display_activity_main);
 
         if(savedInstanceState == null) {
             DisplayJokeActivityFragment fragment = new DisplayJokeActivityFragment();
+
             fragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(
                     android.R.id.content, fragment).commit();

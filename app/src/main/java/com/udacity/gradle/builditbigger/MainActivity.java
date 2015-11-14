@@ -43,7 +43,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view){
-
         Intent jokeIntent = new Intent(this, DisplayJokeActivity.class);
         jokeIntent.putExtra(getString(R.string.joke_key), new JokeProvider().getJoke());
         startActivity(jokeIntent);
