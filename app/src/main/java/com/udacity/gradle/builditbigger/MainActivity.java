@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.JokeProvider;
 import com.example.kacyn.displayjokelib.DisplayJokeActivity;
 
 
@@ -47,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view){
         Intent jokeIntent = new Intent(this, DisplayJokeActivity.class);
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Manfred"));
-        jokeIntent.putExtra(getString(R.string.joke_key), new JokeProvider().getJoke());
+        //jokeIntent.putExtra(getString(R.string.joke_key), new JokeProvider().getJoke());
         startActivity(jokeIntent);
 
         //Toast.makeText(this, new JokeProvider().getJoke(), Toast.LENGTH_SHORT).show();
