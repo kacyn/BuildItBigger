@@ -23,10 +23,8 @@ public class ApplicationTest extends ApplicationTestCase<Application> {
             joke = jokeTask.get(30, TimeUnit.SECONDS);
         } catch (Exception e){
             fail("Timed out");
-
         }
 
         assertFalse(joke.equals(""));
-
     }
 }

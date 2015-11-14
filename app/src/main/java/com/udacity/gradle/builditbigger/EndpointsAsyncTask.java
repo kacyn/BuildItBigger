@@ -3,7 +3,6 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.kacyn.displayjokelib.DisplayJokeActivity;
 import com.example.kacyn.myapplication.backend.myApi.MyApi;
@@ -18,11 +17,9 @@ import java.io.IOException;
 class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService = null;
     private Context mContext;
-    private OnTaskCompleted mListener;
 
-    EndpointsAsyncTask(OnTaskCompleted listener) {
-        mContext = (Context) listener;
-        mListener = listener;
+    EndpointsAsyncTask(Context context) {
+        mContext = context;
     }
 
     @Override
@@ -49,8 +46,6 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
         }
 
         try {
-//            myApiService.getJoke().execute().getData();
-//            return "";
             return myApiService.getJoke().execute().getData();
         }
         catch (IOException e) {
@@ -60,10 +55,7 @@ class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        mListener.onTaskCompleted();
-
         Intent jokeIntent = new Intent(mContext, DisplayJokeActivity.class);
-        Log.v("MainActivity", "mjoke: " + result);
         jokeIntent.putExtra(mContext.getString(R.string.joke_key), result);
         mContext.startActivity(jokeIntent);
     }

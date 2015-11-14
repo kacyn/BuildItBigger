@@ -12,7 +12,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 
-public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
+public class MainActivity extends AppCompatActivity {
 
     private InterstitialAd mInterstitialAd;
     private Button mButton;
@@ -52,6 +52,12 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mProgressBar.setVisibility(View.GONE);
+    }
+
     private void requestNewInterstitial() {
         AdRequest adRequest = new AdRequest.Builder()
                 .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
@@ -85,11 +91,6 @@ public class MainActivity extends AppCompatActivity implements OnTaskCompleted {
     public void tellJoke(){
         mProgressBar.setVisibility(View.VISIBLE);
         new EndpointsAsyncTask(this).execute();
-    }
-
-    @Override
-    public void onTaskCompleted() {
-        mProgressBar.setVisibility(View.GONE);
     }
 }
 
